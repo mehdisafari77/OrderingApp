@@ -16,6 +16,7 @@ class MainVC: UIViewController, UICollectionViewDelegate, UICollectionViewDataSo
     @IBOutlet weak var myCollectionView: UICollectionView!
     
     private let pizzaData = PizzaData()
+    var tally: Int = 0
 
 
     override func viewDidLoad() {

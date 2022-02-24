@@ -7,6 +7,10 @@
 
 import UIKit
 
+protocol PlaceOrderProtocol: AnyObject {
+    func addOrder()
+}
+
 class DetailMenuVC: UIViewController{
     
     @IBOutlet weak var pizzaImageView: UIImageView!
@@ -22,10 +26,13 @@ class DetailMenuVC: UIViewController{
     
     var pizza: Pizza?
     
+    weak var pizzaDelegate: PlaceOrderProtocol?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         styleButton()
+        updateViews()
     }
     
     func styleButton() {
