@@ -30,7 +30,6 @@ class DetailMenuVC: UIViewController{
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         styleButton()
         updateViews()
     }
@@ -56,7 +55,7 @@ class DetailMenuVC: UIViewController{
     
     
     @IBAction func addButtonTapped(_ sender: Any) {
-        
+        pizzaDelegate?.addOrder()
     }
     
     @IBAction func dismissButtonTapped(_ sender: UIButton) {

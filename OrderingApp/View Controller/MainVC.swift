@@ -7,9 +7,8 @@
 
 import UIKit
 
-class MainVC: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
+class MainVC: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, PlaceOrderProtocol {
     
-
     @IBOutlet weak var logoImageView: UIImageView!
     @IBOutlet weak var totalLabel: UILabel!
     @IBOutlet weak var orderButton: UIButton!
@@ -23,6 +22,14 @@ class MainVC: UIViewController, UICollectionViewDelegate, UICollectionViewDataSo
         super.viewDidLoad()
         myCollectionView.delegate = self
         myCollectionView.dataSource = self
+    }
+    
+    func addOrder() {
+        tally += 1
+        
+        DispatchQueue.main.async {
+            self.totalLabel.text = "\(self.tally)"
+        }
     }
     
     // MARK: - Collection View Datasource
@@ -59,6 +66,7 @@ class MainVC: UIViewController, UICollectionViewDelegate, UICollectionViewDataSo
             let pizzaOptions = pizzaData.pizzas[indexPath.row]
             
             destinationVC.pizza = pizzaOptions
+            destinationVC.pizzaDelegate = self
         }
 
     }
