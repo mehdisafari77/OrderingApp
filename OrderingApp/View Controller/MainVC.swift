@@ -108,7 +108,10 @@ class MainVC: UIViewController, UICollectionViewDelegate, UICollectionViewDataSo
 
     // MARK: - Action
     @IBAction func orderButtonTapped(_ sender: Any) {
-
+        DispatchQueue.main.async {
+            self.totalLabel.text = "0"
+            self.animateAstroDude(myImageView: self.logoImageView)
+        }
     }
 
 }
