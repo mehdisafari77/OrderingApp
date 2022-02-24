@@ -13,5 +13,23 @@ class ItemCVCell: UICollectionViewCell {
     @IBOutlet weak var pizzaImage: UIImageView!
     @IBOutlet weak var cheeseLabel: UILabel!
     @IBOutlet weak var priceLabel: UILabel!
+    
+    var pizzaLandingPad: Pizza? {
+        didSet {
+            updateViews()
+        }
+    }
+    
+    func updateViews() {
+        guard let unwrappedPizzaObject = pizzaLandingPad else {
+            return
+        }
+        
+        nameLabel.text = unwrappedPizzaObject.name
+        pizzaImage.image = UIImage(named: unwrappedPizzaObject.imageName)
+        cheeseLabel.text = unwrappedPizzaObject.cheeseType
+        priceLabel.text = "$ \(unwrappedPizzaObject.price)"
+
+    }
 
 }

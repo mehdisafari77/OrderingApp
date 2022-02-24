@@ -14,20 +14,33 @@ class MainVC: UIViewController, UICollectionViewDelegate, UICollectionViewDataSo
     @IBOutlet weak var totalLabel: UILabel!
     @IBOutlet weak var orderButton: UIButton!
     @IBOutlet weak var myCollectionView: UICollectionView!
+    
+    private let pizzaData = PizzaData()
 
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        myCollectionView.delegate = self
+        myCollectionView.dataSource = self
     }
     
     // MARK: - Collection View Datasource
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        <#code#>
+        return pizzaData.pizzas.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        <#code#>
+        //pizzaCell cell name
+        
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "pizzaCell", for: indexPath) as? ItemCVCell else {
+            return UICollectionViewCell()
+        }
+        
+        let pizzaOptions = pizzaData.pizzas[indexPath.row]
+        
+        cell.pizzaLandingPad = pizzaOptions
+        
+        return cell
     }
 
 
