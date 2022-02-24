@@ -20,10 +20,31 @@ class DetailMenuVC: UIViewController{
     @IBOutlet weak var dismissButton: UIButton!
     @IBOutlet weak var priceLabel: UILabel!
     
+    var pizza: Pizza?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        styleButton()
+    }
+    
+    func styleButton() {
+        dismissButton.setImage(UIImage(systemName: "x.circle.fill", withConfiguration: UIImage.SymbolConfiguration(pointSize: 32, weight: .medium, scale: .default)), for: .normal)
+        dismissButton.tintColor = .systemPink
+    }
+    
+    func updateViews() {
+        guard let pizza = pizza else {
+            return
+        }
+        nameLabel.text = pizza.name
+        prepTimeLabel.text = "⏰ 10 - 15 mins"
+        cheeseLabel.text = pizza.cheeseType
+        priceLabel.text = "& \(pizza.price)"
+        descriptionLabel.text = pizza.description
+        calsLabel.text = "🔥\(pizza.cal)"
+        pizzaImageView.image = UIImage(named: pizza.imageName)
+        ratingLabel.text = "⭐️ \(pizza.rating)"
     }
     
     
@@ -32,7 +53,7 @@ class DetailMenuVC: UIViewController{
     }
     
     @IBAction func dismissButtonTapped(_ sender: UIButton) {
-        
+        dismiss(animated: true, completion: nil)
     }
     
 }

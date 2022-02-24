@@ -16,7 +16,9 @@ class ItemCVCell: UICollectionViewCell {
     
     var pizzaLandingPad: Pizza? {
         didSet {
-            updateViews()
+            DispatchQueue.main.async {
+                self.updateViews()
+            }
         }
     }
     

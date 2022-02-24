@@ -47,7 +47,18 @@ class MainVC: UIViewController, UICollectionViewDelegate, UICollectionViewDataSo
     // MARK: - Navigation
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-
+        if segue.identifier == "pizzaSegue" {
+            
+            guard let destinationVC = segue.destination as? DetailMenuVC,
+                    let cell = sender as? ItemCVCell,
+                    let indexPath = myCollectionView.indexPath(for: cell) else {
+                return
+            }
+            
+            let pizzaOptions = pizzaData.pizzas[indexPath.row]
+            
+            destinationVC.pizza = pizzaOptions
+        }
 
     }
 
